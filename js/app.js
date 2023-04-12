@@ -8,7 +8,7 @@ let hours = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', 
 const storeTableBody = document.querySelector('tbody');
 const storeTableHead = document.querySelector('thead');
 
-let storeArray = []
+
 
 const tableElement = document.getElementById("Table");
 
@@ -19,12 +19,8 @@ function Store(name, min, max, avg) {
     this.avg = avg,
     this.cookiesPerHourArray = [],
     this.dailyTotal = 0,
-    storeArray.push(this)
-  this.render = function () {
-
-  }
-  this.generateRandomNumberOfC = function () {
-    return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
+    this.generateRandomNumberOfC = function () {
+      return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
   },
     this.calculateCookiesPerHour = function () {
       for (let i = 0; i < hours.length; i++) {
@@ -40,9 +36,10 @@ function Store(name, min, max, avg) {
       this.calculateCookiesPerHour();
       let firstRow = document.createElement("tr");
       tableElement.appendChild(firstRow);
-      let cityName = document.createElement('td')
+      let cityName = document.createElement('td');
       cityName.textContent = this.name;
-      firstRow.appendChild(cityName)
+      firstRow.appendChild(cityName);
+
       for(let i = 0; i < hours.length; i++){
         let firstElem = document.createElement('td');
         firstElem.textContent = `${this.cookiesPerHourArray[i]}`
@@ -57,6 +54,7 @@ function Store(name, min, max, avg) {
     }
   }
 
+//the renderhours function renders the hours at the top of the table
 function renderHours(){
   let tdElem = document.createElement('td');
   tableElement.appendChild(tdElem);
@@ -65,14 +63,18 @@ function renderHours(){
     tdElem.textContent = `${hours[i]}`
     tableElement.appendChild(tdElem);
   }
-  //only makes total head to right
+  //only makes total head off to the right
   let total = document.createElement('td');
-  total.textContent = "total"
+  total.textContent = "Daily Location Total"
   tableElement.appendChild(total)
 }
 
-Store.prototype.render = function(){
-  return randomInRange(3, 12) + ' months';
+function storeTotal(){
+  //for loop to loop through stores to add numebrs
+  let timeTotal = document.createElement('td');
+  timeTotal.textContent = "Total";
+  createElement.appendChild(timeTotal);
+  //I need to add all numbers of each index of each city
 }
 
 let Seattle = new Store('Seattle', 23, 65, 6.3);
@@ -80,6 +82,8 @@ let Tokyo = new Store('Tokyo', 3, 24, 1.2);
 let Dubai = new Store('Dubai', 11, 38, 3.7);
 let Paris = new Store('Paris', 20, 38, 2.3);
 let Lima = new Store('Lima', 2, 16, 4.6);
+
+let storeArray = [Seattle, Tokyo, Dubai, Paris, Lima];
 
 renderHours();
 
