@@ -5,11 +5,6 @@
 //array for hours
 let hours = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm']
 
-const storeTableBody = document.querySelector('tbody');
-const storeTableHead = document.querySelector('thead');
-
-
-
 const tableElement = document.getElementById("Table");
 
 function Store(name, min, max, avg) {
@@ -43,7 +38,7 @@ function Store(name, min, max, avg) {
       for(let i = 0; i < hours.length; i++){
         let firstElem = document.createElement('td');
         firstElem.textContent = `${this.cookiesPerHourArray[i]}`
-        console.log(this.cookiesPerHourArray[i]);
+        // console.log(this.cookiesPerHourArray[i]);
         // this.dailyTotal += this.cookiesPerHourArray[i];
         firstRow.appendChild(firstElem);
       }
@@ -69,12 +64,27 @@ function renderHours(){
   tableElement.appendChild(total)
 }
 
+//this will calculate the number of cookies for each hour
 function storeTotal(){
   //for loop to loop through stores to add numebrs
   let timeTotal = document.createElement('td');
   timeTotal.textContent = "Total";
-  createElement.appendChild(timeTotal);
+  tableElement.appendChild(timeTotal);
   //I need to add all numbers of each index of each city
+  let hourly2 = 0;
+  for(let i = 0; i < hours.length; i++){
+    let hourly = 0;
+    for(let j = 0; j < storeArray.length; j++){
+      hourly += storeArray[j].cookiesPerHourArray[i];
+      hourly2 += storeArray[j].cookiesPerHourArray[i];
+    }
+    let timeTotal2 = document.createElement('td');
+    timeTotal2.textContent = `${hourly}`;
+    tableElement.appendChild(timeTotal2);
+  }
+    let timeTotal3 = document.createElement('td');
+    timeTotal3.textContent = `${hourly2}`;
+    tableElement.appendChild(timeTotal3);
 }
 
 let Seattle = new Store('Seattle', 23, 65, 6.3);
@@ -92,7 +102,7 @@ Tokyo.tableRender();
 Dubai.tableRender();
 Paris.tableRender();
 Lima.tableRender();
-
+storeTotal();
 // console.log(Seattle);
 // console.log(Tokyo);
 
