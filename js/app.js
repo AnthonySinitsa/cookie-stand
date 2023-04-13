@@ -20,6 +20,7 @@ let handleSubmit = function(event){
   console.log(newStore);
   newStore.tableRender();
   storeArray.push(newStore);
+  storeTotal();
 }
 
 form.addEventListener('submit', handleSubmit);
@@ -92,7 +93,7 @@ function renderHours(){
 function storeTotal(){
   let footer = document.querySelector('tfoot');
   if (footer){
-    footer.removeChild();
+    footer.innerHTML = '';
   }
   footer = document.createElement('tfoot');
   tableElement.appendChild(footer);

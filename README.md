@@ -41,3 +41,5 @@ console.log(sarah);
 console.log(juan);
 
 <!-- https://www.sanwebe.com/2014/08/css-html-forms-designs -->
+<!-- Anthony Sintsa, Dan Quinn, Arthur Francisco -->
+![accessibilty score](img/lighthouse22.png)
