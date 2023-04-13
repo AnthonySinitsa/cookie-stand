@@ -1,5 +1,30 @@
 "use strict";
 
+let form = document.querySelector('form');
+
+console.log(form);
+
+let handleSubmit = function(event){
+  event.preventDefault();
+  let name = event.target.storeName.value;
+  let min = parseInt(event.target.minPerHour.value);
+  let max = parseInt(event.target.maxPerHour.value);
+  let avg = parseInt(event.target.avgPerHour.value);
+  let newStore = new Store(
+    name, 
+    min, 
+    max, 
+    avg,
+    );
+
+  console.log(newStore);
+  newStore.tableRender();
+  storeArray.push(newStore);
+  storeTotal();
+}
+
+form.addEventListener('submit', handleSubmit);
+
 // Store the min/max hourly customers, and the average cookies per customer, in object properties.
 
 //array for hours
@@ -66,25 +91,31 @@ function renderHours(){
 
 //this will calculate the number of cookies for each hour
 function storeTotal(){
-  //for loop to loop through stores to add numebrs
+  let footer = document.querySelector('tfoot');
+  if (footer){
+    footer.innerHTML = '';
+  }
+  footer = document.createElement('tfoot');
+  tableElement.appendChild(footer);
+
   let timeTotal = document.createElement('td');
   timeTotal.textContent = "Total";
-  tableElement.appendChild(timeTotal);
-  //I need to add all numbers of each index of each city
-  let hourly2 = 0;
+  footer.appendChild(timeTotal);
+  
+  let totalOfTotals = 0;
   for(let i = 0; i < hours.length; i++){
     let hourly = 0;
     for(let j = 0; j < storeArray.length; j++){
       hourly += storeArray[j].cookiesPerHourArray[i];
-      hourly2 += storeArray[j].cookiesPerHourArray[i];
+      totalOfTotals += storeArray[j].cookiesPerHourArray[i];
     }
     let timeTotal2 = document.createElement('td');
     timeTotal2.textContent = `${hourly}`;
-    tableElement.appendChild(timeTotal2);
+    footer.appendChild(timeTotal2);
   }
     let timeTotal3 = document.createElement('td');
-    timeTotal3.textContent = `${hourly2}`;
-    tableElement.appendChild(timeTotal3);
+    timeTotal3.textContent = `${totalOfTotals}`;
+    footer.appendChild(timeTotal3);
 }
 
 let Seattle = new Store('Seattle', 23, 65, 6.3);
@@ -94,9 +125,7 @@ let Paris = new Store('Paris', 20, 38, 2.3);
 let Lima = new Store('Lima', 2, 16, 4.6);
 
 let storeArray = [Seattle, Tokyo, Dubai, Paris, Lima];
-
 renderHours();
-
 Seattle.tableRender();
 Tokyo.tableRender();
 Dubai.tableRender();
