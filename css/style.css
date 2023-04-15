@@ -141,3 +141,25 @@ fieldset label > span{
 	padding-top: 8px;
 	padding-right: 5px;
 }
+
+fieldset {
+  font-family: 'Open Sans', sans-serif;
+  color: darkslategray;
+  margin: auto;
+}
+
+table {
+  background-color: #111;
+  font-family: 'My Custom Font', sans-serif;
+  color: aqua;
+}
+
+article h3 {
+  font-size: 2rem;
+  font-family: 'My Custom Font', sans-serif;
+}
+
+section {
+  font-family: 'My Custom Font', sans-serif;
+  color: #333;
+}
